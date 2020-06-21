@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15705" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15706"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Navigation Controller-->
+        <scene sceneID="uFw-ag-3H3">
+            <objects>
+                <navigationController id="BhL-G4-gbF" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="z4S-y8-0Sl">
+                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="Oxd-MD-MRk" kind="relationship" relationship="rootViewController" id="Wzq-bA-kuI"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="klZ-tc-Re8" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-730" y="127"/>
+        </scene>
+        <!--Chat Room View Controller-->
+        <scene sceneID="Kmw-GW-w4J">
+            <objects>
+                <viewController storyboardIdentifier="ChatRoomViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="Oxd-MD-MRk" customClass="ChatRoomViewController" customModule="ChatAppWithFirebase" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="652-xG-vcP">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="NPn-MV-yqn">
+                                <rect key="frame" x="0.0" y="88" width="414" height="774"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="wnD-MU-lZA" firstAttribute="trailing" secondItem="NPn-MV-yqn" secondAttribute="trailing" id="P6j-Xt-ued"/>
+                            <constraint firstItem="NPn-MV-yqn" firstAttribute="top" secondItem="wnD-MU-lZA" secondAttribute="top" id="S85-hj-KQa"/>
+                            <constraint firstItem="NPn-MV-yqn" firstAttribute="leading" secondItem="wnD-MU-lZA" secondAttribute="leading" id="jSh-kX-iUl"/>
+                            <constraint firstItem="wnD-MU-lZA" firstAttribute="bottom" secondItem="NPn-MV-yqn" secondAttribute="bottom" id="xYW-17-nMy"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="wnD-MU-lZA"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="YB7-2A-nMn"/>
+                    <connections>
+                        <outlet property="chatRoomTableView" destination="NPn-MV-yqn" id="BT8-cA-7ZI"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="qRh-qf-UXn" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="233" y="127"/>
+        </scene>
+    </scenes>
+</document>

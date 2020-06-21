@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15705" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15706"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Navigation Controller-->
+        <scene sceneID="NYr-do-kzc">
+            <objects>
+                <navigationController id="RW2-dG-pVn" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="w4i-x5-RnP">
+                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="Oq1-oR-Kpw" kind="relationship" relationship="rootViewController" id="r4j-lR-VwF"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="eev-nK-zw6" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1181" y="-174"/>
+        </scene>
+        <!--User List View Controller-->
+        <scene sceneID="YEB-VE-AqQ">
+            <objects>
+                <viewController storyboardIdentifier="UserListViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="Oq1-oR-Kpw" customClass="UserListViewController" customModule="ChatAppWithFirebase" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="eeI-YY-sNI">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="80" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="ruJ-Vz-DGC">
+                                <rect key="frame" x="0.0" y="88" width="414" height="774"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="cellId" id="LKa-TS-hxu" customClass="UserListTableViewCell" customModule="ChatAppWithFirebase" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="28" width="414" height="80"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="LKa-TS-hxu" id="KYL-q5-PqW">
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="80"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="WJX-D2-B3u">
+                                                    <rect key="frame" x="10" y="7.5" width="65" height="65"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" secondItem="WJX-D2-B3u" secondAttribute="height" multiplier="1:1" id="Bsu-rg-jma"/>
+                                                        <constraint firstAttribute="width" constant="65" id="aN5-3u-cOC"/>
+                                                    </constraints>
+                                                </imageView>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="AKi" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XkR-5C-Np1">
+                                                    <rect key="frame" x="90" y="29.5" width="26" height="21"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="WJX-D2-B3u" firstAttribute="leading" secondItem="KYL-q5-PqW" secondAttribute="leading" constant="10" id="YBK-dN-41f"/>
+                                                <constraint firstItem="WJX-D2-B3u" firstAttribute="centerY" secondItem="KYL-q5-PqW" secondAttribute="centerY" id="arM-hy-xVV"/>
+                                                <constraint firstItem="XkR-5C-Np1" firstAttribute="centerY" secondItem="KYL-q5-PqW" secondAttribute="centerY" id="dxy-eq-9fA"/>
+                                                <constraint firstItem="XkR-5C-Np1" firstAttribute="leading" secondItem="WJX-D2-B3u" secondAttribute="trailing" constant="15" id="jts-QK-Fgv"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="userImageView" destination="WJX-D2-B3u" id="DiQ-bq-YsD"/>
+                                            <outlet property="usernameLabel" destination="XkR-5C-Np1" id="aTE-ju-abA"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </prototypes>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="ruJ-Vz-DGC" firstAttribute="leading" secondItem="10L-F5-jgy" secondAttribute="leading" id="5en-Dx-GPs"/>
+                            <constraint firstItem="10L-F5-jgy" firstAttribute="bottom" secondItem="ruJ-Vz-DGC" secondAttribute="bottom" id="T2A-Un-Soz"/>
+                            <constraint firstItem="ruJ-Vz-DGC" firstAttribute="top" secondItem="10L-F5-jgy" secondAttribute="top" id="YaT-OM-D8j"/>
+                            <constraint firstItem="10L-F5-jgy" firstAttribute="trailing" secondItem="ruJ-Vz-DGC" secondAttribute="trailing" id="jiN-8u-fhf"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="10L-F5-jgy"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="Kny-Wt-2r8">
+                        <barButtonItem key="rightBarButtonItem" style="plain" id="mFx-my-Ali">
+                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="HWo-zU-CWl">
+                                <rect key="frame" x="302" y="7" width="92" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="1" green="0.49311192265809045" blue="0.52337546346533081" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <state key="normal" title="会話を開始">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                            </button>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="startChatButton" destination="HWo-zU-CWl" id="UZV-2g-wbh"/>
+                        <outlet property="userListTableView" destination="ruJ-Vz-DGC" id="dqg-8K-JkJ"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="3of-Ml-YpW" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-232" y="-174"/>
+        </scene>
+    </scenes>
+</document>
