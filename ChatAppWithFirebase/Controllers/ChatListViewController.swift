@@ -205,7 +205,6 @@ extension ChatListViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        print("tapped table view")
         let storyboard = UIStoryboard.init(name: "ChatRoom", bundle: nil)
         let chatRoomViewController = storyboard.instantiateViewController(withIdentifier: "ChatRoomViewController") as! ChatRoomViewController
         chatRoomViewController.user = user

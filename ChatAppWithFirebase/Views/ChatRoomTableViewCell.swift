@@ -48,6 +48,7 @@ class ChatRoomTableViewCell: UITableViewCell {
     ///どのメッセージユーザーか確認
     private func checkWhichUserMessage(){
         guard let uid = Auth.auth().currentUser?.uid else { return }
+        
         if uid == message?.uid{
             partnerMessageTextView.isHidden = true
             partnerDateLabel.isHidden = true
@@ -83,7 +84,6 @@ class ChatRoomTableViewCell: UITableViewCell {
                 partnerDateLabel.text = dateFormatterForDateLabel(date: message.createdAt.dateValue())
             }
         }
-        
     }
     ///テキストのサイズを決める
     private func estimateFrameForTextView(text: String) -> CGRect {

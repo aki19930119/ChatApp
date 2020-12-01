@@ -13,13 +13,12 @@ protocol ChatInputAccessoryViewDelegate: class {
 }
 
 class ChatInputAccessoryView: UIView {
-    
+        
     @IBOutlet weak var chatTextView: UITextView!
     @IBOutlet weak var sendButton: UIButton!
     @IBAction func tappedSendButton(_ sender: Any) {
         guard let text = chatTextView.text else { return }
         delegate?.tappedSendButton(text: text)
-        print("tappedSendButton")
     }
     
     weak var delegate: ChatInputAccessoryViewDelegate?

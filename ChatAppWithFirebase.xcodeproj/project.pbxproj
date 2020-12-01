@@ -56,7 +56,7 @@
 		618635452440CB29005D6A44 /* ChatRoomTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatRoomTableViewCell.swift; sourceTree = "<group>"; };
 		6186354A2440D1D1005D6A44 /* ChatInputAccessoryView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ChatInputAccessoryView.xib; sourceTree = "<group>"; };
 		6186354C2440D37B005D6A44 /* ChatInputAccessoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatInputAccessoryView.swift; sourceTree = "<group>"; };
-		6186354E2440F209005D6A44 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../Googleinfo/ChatWithFirebase/GoogleService-Info.plist"; sourceTree = "<group>"; };
+		6186354E2440F209005D6A44 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../GoogleService-Info.plist"; sourceTree = "<group>"; };
 		618635502440F4E0005D6A44 /* SignUp.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = SignUp.storyboard; sourceTree = "<group>"; };
 		618635522440F7F7005D6A44 /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
 		618635552441175A005D6A44 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
@@ -461,8 +461,10 @@
 			baseConfigurationReference = D36B04D855B27A7BF8237ED5 /* Pods-ChatAppWithFirebase.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 986MT8CMMX;
+				DEVELOPMENT_TEAM = N7486S27FT;
+				EXCLUDED_ARCHS = "EXCLUDED_ARCHS[sdk=iphonesimulator*] = arm64\nEXCLUDED_ARCHS[sdk=iphonesimulator*] = arm64\n";
 				INFOPLIST_FILE = ChatAppWithFirebase/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.4;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -471,6 +473,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = org.akiblog.ChatAppWithFirebase;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -482,14 +485,15 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 986MT8CMMX;
+				DEVELOPMENT_TEAM = N7486S27FT;
+				EXCLUDED_ARCHS = "EXCLUDED_ARCHS[sdk=iphonesimulator*] = arm64\nEXCLUDED_ARCHS[sdk=iphonesimulator*] = arm64\n";
 				INFOPLIST_FILE = ChatAppWithFirebase/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.4;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = org.akiblog.ChatApp;
+				PRODUCT_BUNDLE_IDENTIFIER = org.akiblog.ChatAppWithFirebase;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";

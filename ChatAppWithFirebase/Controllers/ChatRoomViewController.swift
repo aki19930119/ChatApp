@@ -35,6 +35,7 @@ class ChatRoomViewController: UIViewController {
     ///ビューの呼び出し
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         setupNotification()
         setUpChatRoomTableView()
         fetchMessages()
@@ -62,9 +63,12 @@ class ChatRoomViewController: UIViewController {
     @objc func keyboardWillShow(notification: NSNotification){
         guard let userInfo = notification.userInfo else { return }
         if let keyboardFrame = (userInfo[UIResponder.keyboardFrameEndUserInfoKey] as AnyObject).cgRectValue {
+            
             if keyboardFrame.height <= accesoryHeight { return }
+            
             let top = keyboardFrame.height - safeAreaButtom
             var moveY = -(top - chatRoomTableView.contentOffset.y)
+            
             //最下部以外ズレるので微調整
             if chatRoomTableView.contentOffset.y != -60 { moveY += 60 }
             let contentInset = UIEdgeInsets(top: top, left: 0, bottom: 0, right: 0)
