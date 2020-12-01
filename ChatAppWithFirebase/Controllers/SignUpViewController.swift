@@ -35,12 +35,17 @@ class SignUpViewController: UIViewController {
     }
     
     private func setUpViews(){
+        /*
+         profileImageButtonの角を削っている
+         profileImageButtonの枠線の太さの調整
+         profileImageButtonの枠線の色を決める
+         **/
         profileImageButton.layer.cornerRadius = 85
         profileImageButton.layer.borderWidth = 1
         profileImageButton.layer.borderColor = UIColor.rgb(red: 240, green: 240, blue: 240).cgColor
-        
+        //登録ボタンの角を削っている
         registerButton.layer.cornerRadius = 12
-        
+        //ターゲットオブジェクトとアクションメソッドの関連付け
         profileImageButton.addTarget(self, action: #selector(tappedProfileImageButton), for: .touchUpInside)
         registerButton.addTarget(self, action: #selector(tappedRegisterButton), for: .touchUpInside)
         alreadyHaveAccountButton.addTarget(self, action: #selector(tappedAlreadyHaveAccountButton), for: .touchUpInside)
@@ -52,13 +57,13 @@ class SignUpViewController: UIViewController {
         registerButton.isEnabled = false
         registerButton.backgroundColor = .rgb(red: 100, green: 100, blue: 100)
     }
-    
+    //ログインビューへの遷移
     @objc private func tappedAlreadyHaveAccountButton(){
         let storyboard = UIStoryboard(name: "Login", bundle: nil)
         let loginViewController = storyboard.instantiateViewController(withIdentifier: "LoginViewController")
         self.navigationController?.pushViewController(loginViewController, animated: true)
     }
-    ///プロフィールボタンを押した時の処理
+    ///イメージの選択
     @objc private func tappedProfileImageButton() {
         let imagePickerController = UIImagePickerController()
         imagePickerController.delegate = self
@@ -66,7 +71,7 @@ class SignUpViewController: UIViewController {
         
         self.present(imagePickerController, animated: true, completion: nil)
     }
-    ///tappedRegisterButtonのアクションの処理
+    ///登録処理
     @objc private func tappedRegisterButton() {
         let image = profileImageButton.imageView?.image ?? UIImage(named: "alex-knight-YGllNX_ol-A-unsplash")
         guard let uploadImage = image?.jpegData(compressionQuality: 0.3) else { return }
@@ -96,7 +101,7 @@ class SignUpViewController: UIViewController {
         }
     }
     
-    ///ファイアーベースにユーザーを作成
+    ///firebaseにユーザーを作成
     private func createUserToFirestore(profileImageUrl: String) {
         guard let email = emailTextField.text else { return }
         guard let password = passwordTextField.text else { return }
@@ -137,7 +142,7 @@ class SignUpViewController: UIViewController {
 }
 
 extension SignUpViewController: UITextFieldDelegate {
-    
+    //テキストフィールドの設定
     func textFieldDidChangeSelection(_ textField: UITextField) {
         let emailIsEmpty = emailTextField.text?.isEmpty ?? false
         let passwordIsEmpty = passwordTextField.text?.isEmpty ?? false

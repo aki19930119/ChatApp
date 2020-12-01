@@ -50,7 +50,7 @@ class ChatInputAccessoryView: UIView {
         chatTextView.text = ""
         sendButton.isEnabled = false
     }
-    ///??
+    ///余白を0にしている
     override var intrinsicContentSize: CGSize {
         return .zero
     }

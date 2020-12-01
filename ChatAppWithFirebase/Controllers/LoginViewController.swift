@@ -14,7 +14,6 @@ class LoginViewController: UIViewController {
     
     
     @IBOutlet weak var emailTextField: UITextField!
-    
     @IBOutlet weak var passwordTextField: UITextField!
     @IBOutlet weak var loginButton: UIButton!
     @IBOutlet weak var dontHaveAccountButton: UIButton!
@@ -22,15 +21,17 @@ class LoginViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         loginButton.layer.cornerRadius = 8
+        //ターゲットオブジェクトとアクションメソッドをコントロールに関連付け
         dontHaveAccountButton.addTarget(self, action: #selector(tappedDontHaveAccountButton), for: .touchUpInside)
         loginButton.addTarget(self, action: #selector(tappedLoginButton), for: .touchUpInside)
 
     }
-    
+    //ボタンがタップされたときの処理
     @objc private func tappedDontHaveAccountButton(){
+        //1つ前のViewControllerに戻る
         self.navigationController?.popViewController(animated: true)
     }
-    
+    //ログイン処理
     @objc private func tappedLoginButton(){
         guard let email = emailTextField.text else { return }
         guard let password = passwordTextField.text else { return }
@@ -51,6 +52,7 @@ class LoginViewController: UIViewController {
             self.dismiss(animated: true, completion: nil)
         }
     }
+    //ファーストレスポンダーを呼び出し
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         self.view.endEditing(true)
     }

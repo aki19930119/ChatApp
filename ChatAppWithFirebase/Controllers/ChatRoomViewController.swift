@@ -40,7 +40,7 @@ class ChatRoomViewController: UIViewController {
         setUpChatRoomTableView()
         fetchMessages()
     }
-    
+    //通知
     private func setupNotification(){
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
@@ -51,6 +51,14 @@ class ChatRoomViewController: UIViewController {
         
         chatRoomTableView.delegate = self
         chatRoomTableView.dataSource = self
+        /*
+         chatRoomTableViewを登録
+         chatRoomTableViewの背景色を変更
+         chatRoomTableViewの上の余白部分の調整
+         chatRoomTableViewのスクロールバーの開始位置をずらしている
+         chatRoomTableViewの下方向ドラッグに合わせてキーボードを閉じてくれる
+         chatRoomTableViewの位置の調整？
+         */
         chatRoomTableView.register(UINib(nibName: "ChatRoomTableViewCell", bundle: nil), forCellReuseIdentifier: cellId)
         chatRoomTableView.backgroundColor = .rgb(red: 118, green: 140, blue: 180)
         chatRoomTableView.contentInset = tableViewContentInset
@@ -59,7 +67,7 @@ class ChatRoomViewController: UIViewController {
         chatRoomTableView.transform = CGAffineTransform(a: 1, b: 0, c: 0, d: -1, tx: 0, ty: 0)
         
     }
-    
+    //キーボードを表示させるときの処理
     @objc func keyboardWillShow(notification: NSNotification){
         guard let userInfo = notification.userInfo else { return }
         if let keyboardFrame = (userInfo[UIResponder.keyboardFrameEndUserInfoKey] as AnyObject).cgRectValue {
@@ -78,7 +86,7 @@ class ChatRoomViewController: UIViewController {
 
         }
     }
-    
+    //キーボードを隠すときの処理
     @objc func keyboardWillHide(){
         chatRoomTableView.contentInset = tableViewContentInset
         chatRoomTableView.scrollIndicatorInsets = tableViewIndicatorInset
@@ -129,11 +137,11 @@ class ChatRoomViewController: UIViewController {
 }
 
 extension ChatRoomViewController: ChatInputAccessoryViewDelegate {
-    
+    //送信ボタンを押したときの処理
     func tappedSendButton(text: String) {
         addMessageToFirestore(text: text)
     }
-    
+    //メッセージの追加
     private func addMessageToFirestore(text: String) {
         guard let chatroomDocId = chatroom?.documentId else { return }
         guard let name = user?.username else { return }
@@ -184,17 +192,17 @@ extension ChatRoomViewController: ChatInputAccessoryViewDelegate {
     
 }
 extension ChatRoomViewController: UITableViewDelegate, UITableViewDataSource {
-    
+    //高さの調整
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         chatRoomTableView.estimatedRowHeight = 20
         return UITableView.automaticDimension
         
     }
-    
+    //セルの数
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return messages.count
     }
-    
+    //セルの作成
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = chatRoomTableView.dequeueReusableCell(withIdentifier: cellId, for: indexPath) as! ChatRoomTableViewCell
         cell.transform = CGAffineTransform(a: 1, b: 0, c: 0, d: -1, tx: 0, ty: 0)

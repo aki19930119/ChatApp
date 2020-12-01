@@ -88,6 +88,7 @@ class ChatListViewController: UIViewController {
                     
                     guard let dic = messageSnapshot?.data() else { return }
                     let user = User(dic: dic)
+                    
                     user.uid = documentChange.document.documentID
                     chatroom.partnerUser = user
                     
@@ -99,6 +100,7 @@ class ChatListViewController: UIViewController {
                         self.chatListTableView.reloadData()
                         return
                     }
+                    
                     Firestore.firestore().collection("chatRooms").document(chatroomId).collection("messages").document(latestMessageId).getDocument { (snapshot,err) in
                         if let err = err{
                             print("最新情報の取得に失敗しました\(err)")
@@ -122,13 +124,27 @@ class ChatListViewController: UIViewController {
         chatListTableView.tableFooterView = UIView()
         chatListTableView.delegate = self
         chatListTableView.dataSource = self
-        
+        /*
+         ナビゲーションバーのカラーの設定
+         ナビゲーションバーのタイトルの設定
+         ナビゲーションバーのカラーの設定
+         */
         navigationController?.navigationBar.barTintColor = .rgb(red: 39, green: 49, blue: 69)
         navigationItem.title = "トーク"
         navigationController?.navigationBar.titleTextAttributes = [.foregroundColor: UIColor.white]
-        
+        /*
+         ナビゲーションバーを定義　新規チャット
+         ナビゲーションバーを定義　ログアウト
+         **/
         let rigntBarButton = UIBarButtonItem(title: "新規チャット", style: .plain, target: self, action: #selector(tappedNavRightBarButton))
         let logoutBarButton = UIBarButtonItem(title: "ログアウト", style: .plain, target: self, action: #selector(tappedLogoutButton))
+        /*
+         ナビゲーションバーのアイテムを設置　新規チャット
+         ナビゲーションバーのアイテムの色の設定　新規チャット
+         ナビゲーションバーのアイテムを設置　ログアウト
+         ナビゲーションバーのアイテムの色の設定　ログアウト
+
+         */
         navigationItem.rightBarButtonItem = rigntBarButton
         navigationItem.rightBarButtonItem?.tintColor = .white
         navigationItem.leftBarButtonItem = logoutBarButton
@@ -151,7 +167,7 @@ class ChatListViewController: UIViewController {
             
         }
     }
-    
+    ///ログインビューの呼び出し
     private func pushLoginViewController(){
         let storyboard = UIStoryboard(name: "SignUp", bundle: nil)
         let signUpViewController = storyboard.instantiateViewController(withIdentifier: "SignUpViewController")
@@ -160,7 +176,7 @@ class ChatListViewController: UIViewController {
         self.present(nav,animated: true,completion: nil)
     }
     
-    ///右の新規チャットボタンがタップされた時の処理
+    ///ユーザーリストビューの呼び出し
     @objc private func tappedNavRightBarButton() {
         let storyboard = UIStoryboard.init(name: "UserList", bundle: nil)
         let userListViewControlelr = storyboard.instantiateViewController(withIdentifier: "UserListViewController")
@@ -189,21 +205,21 @@ class ChatListViewController: UIViewController {
 
 // MARK: - UITableViewDelegate, UITableViewDataSource
 extension ChatListViewController: UITableViewDelegate, UITableViewDataSource {
-    
+    //高さの調整
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 80
     }
-    
+    // TableViewに表示するセルの数を返す
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return chatroooms.count
     }
-    
+    //セルを作成して返却
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = chatListTableView.dequeueReusableCell(withIdentifier: cellId, for: indexPath) as! ChatListTableViewCell
         cell.chatroom = chatroooms[indexPath.row]
         return cell
     }
-    
+    //セルが選択されていることをデリゲートに通知
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let storyboard = UIStoryboard.init(name: "ChatRoom", bundle: nil)
         let chatRoomViewController = storyboard.instantiateViewController(withIdentifier: "ChatRoomViewController") as! ChatRoomViewController

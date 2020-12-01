@@ -22,22 +22,26 @@ class UserListViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        setupViews()
+    }
+    
+    private func setupViews(){
         
         userListTableView.tableFooterView = UIView()
         userListTableView.delegate = self
         userListTableView.dataSource = self
         startChatButton.layer.cornerRadius = 15
         startChatButton.isEnabled = false
+        //ターゲットオブジェクトとアクションメソッドをコントロールに関連付け
         startChatButton.addTarget(self, action: #selector(tappedStartChatButton), for: .touchUpInside)
         
         navigationController?.navigationBar.barTintColor = .rgb(red: 39, green: 49, blue: 69)
         
         fetchUserInfoFromFirestore()
+
     }
-    
-    ///tappedStartChatButtonのアクションの処理
+    ///tappedStartChatButtonが押されたときの処理
     @objc func tappedStartChatButton() {
-        print("tappedStartChatButton")
         guard let uid = Auth.auth().currentUser?.uid else { return }
         guard let partnerUid = self.selectedUser?.uid else { return }
         let memebers = [uid, partnerUid]
@@ -58,7 +62,7 @@ class UserListViewController: UIViewController {
         }
     }
     
-    ///ファイヤーベースからユーザーの情報を取り出す
+    ///firebaseからユーザーの情報を取得
     private func fetchUserInfoFromFirestore() {
         
         Firestore.firestore().collection("users").getDocuments { (snapshots, err) in
@@ -86,17 +90,18 @@ class UserListViewController: UIViewController {
 }
 
 extension UserListViewController: UITableViewDelegate, UITableViewDataSource {
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return users.count
     }
-    
+    //セルを返す
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = userListTableView.dequeueReusableCell(withIdentifier: cellId, for: indexPath) as! UserListTableViewCell
         cell.user = users[indexPath.row]
         
         return cell
     }
-    
+    //セルが押されたときの処理
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         startChatButton.isEnabled = true
         let user = users[indexPath.row]
